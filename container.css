@@ -1,0 +1,47 @@
+#container {
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  border: 3px solid black;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+#container > div {
+  border: 1px solid black;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  width: 90%;
+  margin: auto;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 40% 60%);
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+#container > div:hover {
+  border: 1px solid red;
+}
+#container > div > div {
+  margin-bottom: 40px;
+}
+#container > div > div > img {
+  width: 300px;
+}
+#con-btn {
+  text-align: center;
+  /* border: 1px solid red;  */
+  margin-top: 10px;
+  margin-bottom: 50px;
+  /* padding: 10px; */
+}
+button {
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 80px;
+  font-size: 20px;
+}
+button:hover {
+  border: 2px solid gray;
+}

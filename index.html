@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News App</title>
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="container.css" />
+  </head>
+  <body>
+    <div id="navbar">
+      <div onclick="enter()">Entertainment</div>
+      <div onclick="sport()">Sports</div>
+      <div onclick="tech()">Technology</div>
+
+      <input type="text" placeholder="Search" id="search" />
+      <button id="searchBtn" onclick="searchFunc()">Search</button>`
+    </div>
+
+    <h1 id="header">Top 10 India's news</h1>
+    <div id="con-btn">
+      <div id="container"></div>
+      <button onclick="prev()">Prev</button>
+      <button onclick="next()">Next</button>
+    </div>
+  </body>
+</html>
+<!-- <script src="index.js" type="module"></script> -->
+<script>
+  let data;
+  let data1;
+
+  async function fetchData() {
+    try {
+      let url =
+        "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=0c63151c229a4ca396d91d3fd71e9c9b";
+      let res = await fetch(url);
+      res = await res.json();
+      data = res.articles;
+      render(0);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  fetchData();
+
+  async function enter() {
+    try {
+      let head = document.getElementById("header");
+
+      head.innerText = "Entertainment";
+      let url = `https://newsapi.org/v2/everything?q=entertainment&from=2022-09-10&to=2022-09-10&sortBy=popularity&apiKey=0c63151c229a4ca396d91d3fd71e9c9b`;
+      let res = await fetch(url);
+      res = await res.json();
+      data = res.articles;
+      console.log(data);
+      render(0);
+    } catch (err) {
+      // console.log(err);
+    }
+  }
+
+  async function main() {
+    let Fetchdata = await fetchData();
+
+    // console.log(data);
+
+    render(0);
+  }
+  main();
+
+  let searchFunc = async () => {
+    try {
+      let query = document.getElementById("search").value;
+
+      let head = document.getElementById("header");
+
+      head.innerText = query;
+
+      let url1 = `https://newsapi.org/v2/everything?q=${query}&apiKey=277e36c1fb0b4702817e8d26505833d6`;
+
+      let res = await fetch(url1);
+      res = await res.json();
+      data = res.articles;
+      // console.log(data.articles)
+      render(0);
+    } catch (err) {
+      // console.log(err);
+    }
+  };
+
+  let sport = async () => {
+    try {
+      // console.log("hiiii")
+      // let query = document.getElementById('search').value
+
+      let head = document.getElementById("header");
+
+      head.innerText = "Sports";
+
+      let url2 = `https://newsapi.org/v2/everything?q=sports&apiKey=f72eca3a5d214ef2bd6abee19491ca04`;
+
+      let res = await fetch(url2);
+      res = await res.json();
+      data = res.articles;
+      console.log(data);
+      render(0);
+    } catch (err) {
+      // console.log(err);
+    }
+  };
+  let tech = async () => {
+    try {
+      // console.log("hiiii")
+      // let query = document.getElementById('search').value
+
+      let head = document.getElementById("header");
+
+      head.innerText = "Technology";
+
+      let url3 = `https://newsapi.org/v2/everything?q=technology&apiKey=f72eca3a5d214ef2bd6abee19491ca04`;
+
+      let res = await fetch(url3);
+      res = await res.json();
+      data = res.articles;
+      console.log(data);
+      render(0);
+    } catch (err) {
+      // console.log(err);
+    }
+  };
+
+  let render = (i) => {
+    container.innerHTML = null;
+    let start = i * 5;
+    let end = start + 5;
+
+    let perpage = data.slice(start, end);
+
+    perpage.forEach(({ urlToImage, title, content, description }) => {
+      const div = document.createElement("div");
+
+      const child1 = document.createElement("div");
+      const child2 = document.createElement("div");
+
+      const img = document.createElement("img");
+      img.src = urlToImage;
+
+      const Title = document.createElement("h2");
+      Title.innerText = title;
+
+      const Con = document.createElement("p");
+      Con.innerText = content;
+
+      const Des = document.createElement("p");
+      Des.innerText = description;
+
+      child1.append(img);
+      child2.append(Title, Con, Des);
+      div.append(child1, child2);
+      container.append(div);
+    });
+  };
+
+  let i = 0;
+
+  function prev() {
+    if (i >= 1) {
+      render(--i);
+    } else if (i == 1) {
+      render(i);
+    }
+    console.log(i);
+  }
+  function next() {
+    if (i == data.length / 5 - 1) {
+      i = 0;
+      render(i);
+    } else {
+      render(++i);
+      console.log(i);
+    }
+  }
+</script>

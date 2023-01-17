@@ -1,0 +1,50 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
+}
+body {
+  background-color: gray;
+}
+#navbar {
+  padding: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 70px;
+  font-size: 30px;
+  background-color: teal;
+  margin-bottom: 20px;
+}
+
+#navbar > div {
+  text-decoration: none;
+  color: white;
+}
+
+#searchBtn {
+  margin-right: 20px;
+  width: 100px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid red;
+}
+#searchBtn:hover {
+  border: 1px solid red;
+  color: red;
+}
+input {
+  width: 300px;
+  height: 25px;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  border: none;
+  font-size: 25px;
+}
+input:hover{
+    border: 1px solid red;
+}
+#navbar > div:hover {
+  text-decoration: underline;
+  color: red;
+}
